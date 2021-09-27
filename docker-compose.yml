@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  nginx-block:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nginx-block
+    restart: unless-stopped
+    ports: 
+      - 80:80
+    volumes:
+      - ./conf.d/test.conf:/etc/nginx/conf.d/test.conf
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    driver: bridge
