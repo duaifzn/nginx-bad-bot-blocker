@@ -19,4 +19,5 @@ RUN wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot
 COPY ./update-badbotsblocker.sh /usr/local/sbin/
 COPY cron-blacklist /etc/cron.d/cron-blacklist
 RUN chmod 0644 /etc/cron.d/cron-blacklist && crontab /etc/cron.d/cron-blacklist
+#根使用者有自己的 crontab，不過也使用 /etc/crontab 檔案，或寫入額外的 crontab 檔案於 /etc/cron.d 資料夾內。最後兩個解決方案有其優勢，在執行命令時辦識使用者。
 CMD ["cron", "-f"]
